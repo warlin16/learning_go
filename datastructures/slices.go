@@ -4,7 +4,7 @@ import "fmt"
 
 // a SLICE allows you to group values of the same TYPE
 
-// PrintSlice prints shit br0
+// PrintSlice prints the slice
 func PrintSlice() {
 	x := []int{1, 2, 3, 4, 5}
 	for i, v := range x {

@@ -8,9 +8,9 @@ type person struct {
 
 // this is called embedding when you use another struct as part of
 // another structs definition
-type hispanic struct {
+type employee struct {
 	person
-	citizen bool
+	employed bool
 }
 
 // PrintStruct prints structs
@@ -23,16 +23,16 @@ func PrintStruct() {
 	// with . notation
 	fmt.Println("My first name is", warlin.first, "and my last name is", warlin.last)
 
-	reyes := hispanic{
+	reyes := employee{
 		person: person{
 			first: "Warlin",
 			last:  "Reyes",
 		},
-		citizen: true,
+		employed: true,
 	}
 
-	if reyes.citizen {
-		fmt.Println(reyes.last, "You are a hispanic citizen!")
+	if reyes.employed {
+		fmt.Println(reyes.last, "You are a employed!")
 	}
 
 	anonymousStruct()
