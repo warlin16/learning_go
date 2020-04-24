@@ -24,6 +24,9 @@ func PrintExpressions() {
 	fmt.Println("The value of a", a())
 	b := incrementor()
 	fmt.Println("The value of b", b())
+	fmt.Println("---------------------------------------")
+	fmt.Println("your first recursive function in go", factorial(4))
+	fmt.Println(loopFactorial(4))
 }
 
 // returning a func from a func
@@ -79,4 +82,21 @@ func incrementor() func() int {
 		x++
 		return x
 	}
+}
+
+// quick refresher on recursion
+
+func factorial(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * factorial(n-1)
+}
+
+func loopFactorial(n int) int {
+	result := 1
+	for ; n > 0; n-- {
+		result *= n
+	}
+	return result
 }
