@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "learninggo/pointers"
 
+func main() {
+	pointers.PrintAddress()
 }
