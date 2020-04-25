@@ -3,5 +3,5 @@ package main
 import "learninggo/chann"
 
 func main() {
-	chann.SendAndReceive()
+	chann.LoopOverChann()
 }

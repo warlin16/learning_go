@@ -56,3 +56,24 @@ func SendAndReceive() {
 	// from crashing and needing the assistance from a mutex and or waitgroup
 	fmt.Println("Finished!", time.Since(start))
 }
+
+// LoopOverChann ranges over a channel and prints its contents
+func LoopOverChann() {
+	start := time.Now()
+	c := make(chan int)
+	go sendToChannel(c)
+
+	for value := range c {
+		fmt.Println("All the values in the channel", value)
+	}
+
+	fmt.Println("Exiting the function. You ranged over a channel!", time.Since(start))
+}
+
+func sendToChannel(c chan<- int) {
+	for i := 0; i < 100; i++ {
+		c <- i
+	}
+	// IMPORTANT TO REMEMBER YOU MUST ALWAYS CLOSE YOUR CHANNEL
+	close(c)
+}
