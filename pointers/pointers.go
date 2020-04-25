@@ -22,3 +22,22 @@ func PrintAddress() {
 	*y = 27
 	fmt.Println("Changed the value of x by using it's pointer.. wow", x)
 }
+
+func changeByAddress() {
+	x := 0
+	reassignVar(x)
+	fmt.Println("Did the value get reassigned?", x)
+}
+
+func reassignVar(y int) {
+	fmt.Println(y)
+	y = 27
+	fmt.Println(y)
+}
+
+// MutateValueByAddress mutate the value at the given address
+func MutateValueByAddress(v *int) {
+	fmt.Println("The value before", *v)
+	*v = 27
+	fmt.Println("The value after:", *v)
+}
