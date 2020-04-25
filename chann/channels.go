@@ -1,6 +1,9 @@
 package chann
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // TestWithBufferedChannels tests
 func TestWithBufferedChannels() {
@@ -32,4 +35,24 @@ func receivingChann() {
 
 	c <- "hello"
 	fmt.Println("Channels that only receive ^^")
+}
+
+func sendToChann(c chan<- int) {
+	c <- 27
+}
+
+func receiveFromChann(c <-chan int) {
+	fmt.Println(<-c)
+}
+
+// SendAndReceive sends to a chann and receives from it without waitgroups or mutexes
+func SendAndReceive() {
+	start := time.Now()
+	c := make(chan int)
+	go sendToChann(c)
+	receiveFromChann(c)
+	// since channels are BLOCKING the function receiveFromChann blocks execution
+	// but we started to execute sendToChann in it's own goroutine preventing the app
+	// from crashing and needing the assistance from a mutex and or waitgroup
+	fmt.Println("Finished!", time.Since(start))
 }
