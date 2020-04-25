@@ -1,0 +1,1 @@
+*Simple* repository where I'll be learning what makes the Go language work abd trying to use it in practical examples.
