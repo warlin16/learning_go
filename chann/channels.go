@@ -77,3 +77,44 @@ func sendToChannel(c chan<- int) {
 	// IMPORTANT TO REMEMBER YOU MUST ALWAYS CLOSE YOUR CHANNEL
 	close(c)
 }
+
+// SelectAChann experiment with select stmt
+func SelectAChann() {
+	start := time.Now()
+	even := make(chan int)
+	odd := make(chan int)
+	quit := make(chan int)
+
+	go send(even, odd, quit)
+
+	receive(even, odd, quit)
+
+	fmt.Println("Finishing execution", time.Since(start))
+}
+
+func send(e, o, q chan<- int) {
+	for i := 0; i < 100; i++ {
+		if i%2 == 0 {
+			e <- i
+		} else {
+			o <- i
+		}
+	}
+	q <- 0
+}
+
+// select lets you wait on multiple channel operations.
+// Combining goroutines and channels with select is a powerful feature of Go.
+func receive(e, o, q <-chan int) {
+	for {
+		select {
+		case v := <-e:
+			fmt.Println("From the even channel:", v)
+		case v := <-o:
+			fmt.Println("From the odd channel:", v)
+		case v := <-q:
+			fmt.Println("From the quit channel", v)
+			return
+		}
+	}
+}
