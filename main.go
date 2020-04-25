@@ -1,7 +1,7 @@
 package main
 
-import "learninggo/pointers"
+import "learninggo/concurrency"
 
 func main() {
-	pointers.PrintAddress()
+	concurrency.RaceCondition()
 }
