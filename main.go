@@ -1,7 +1,8 @@
 package main
 
-import "learninggo/concurrency"
+import "learninggo/chann"
 
 func main() {
-	concurrency.RaceCondition()
+	chann.TestWithBufferedChannels()
+	chann.TestChannelsWithGR()
 }
